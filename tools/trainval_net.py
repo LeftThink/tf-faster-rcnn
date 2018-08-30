@@ -100,12 +100,16 @@ if __name__ == '__main__':
   pprint.pprint(cfg)
 
   np.random.seed(cfg.RNG_SEED)
+    
+  # add by zuosi
+  cfg.TRAIN.USE_FLIPPED = False
 
   # train set
   imdb, roidb = combined_roidb(args.imdb_name)
   print('{:d} roidb entries'.format(len(roidb)))
 
   # output directory where the models are saved
+  # e.g. ./output/default/pascal_voc
   output_dir = get_output_dir(imdb, args.tag)
   print('Output will be saved to `{:s}`'.format(output_dir))
 

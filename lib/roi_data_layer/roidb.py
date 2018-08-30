@@ -15,6 +15,7 @@ from model.config import cfg
 from model.bbox_transform import bbox_transform
 from utils.cython_bbox import bbox_overlaps
 import PIL
+import time
 
 def prepare_roidb(imdb):
   """Enrich the imdb's roidb by adding some derived quantities that
@@ -34,6 +35,7 @@ def prepare_roidb(imdb):
       roidb[i]['height'] = sizes[i][1]
     # need gt_overlaps as a dense array for argmax
     gt_overlaps = roidb[i]['gt_overlaps'].toarray()
+
     # max overlap with gt over classes (columns)
     max_overlaps = gt_overlaps.max(axis=1)
     # gt class that had the max overlap
